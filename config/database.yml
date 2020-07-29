@@ -1,0 +1,21 @@
+defaults: &defaults
+  adapter:  mysql2
+  encoding: utf8
+  read_timeout: 600
+  pool: 20
+  variables:
+    sql_mode: TRADITIONAL
+
+development:
+  <<: *defaults
+  host:     <%= ENV.fetch('MYSQL_HOST') { '' } %>
+  database: <%= ENV.fetch('MYSQL_DATABASE') { '' } %>
+  username: <%= ENV.fetch('MYSQL_USER') { '' } %>
+  password: <%= ENV.fetch('MYSQL_PASSWORD') { '' } %>
+
+test:
+  <<: *defaults
+  host: mysql
+  username: dduser
+  password: magickpork
+  database: dd_test
